@@ -6,7 +6,7 @@ using namespace std;
 int healthStat, hungerStat, energyStat, loveStat, currentTime;
 int c_MAXSTAT = 100; //Max value for stats
 string petAscii = "        _\no'')}__//\n `/      )\n ((/-(/";
-
+string name; 
 // check if tomogatchi is alive
 // return true if all stats above 0, false if any stat below or equal to 0
 bool isAlive() {
@@ -69,11 +69,12 @@ string getTime() {
 
 // print all stat values and time
 void toStringStats() {
-    cout << "\n\n\nHealth: " << healthStat << endl;
-    cout << "Hunger: " << hungerStat << endl;
-    cout << "Energy: " << energyStat << endl;
-    cout << "Love: " << loveStat << endl;
-    cout << "The time is: " << getTime() << endl;
+    cout<< "\n" << name << "\n" << endl;
+    cout << "Health: " << healthStat << endl;
+    cout << "Hunger: " << hungerStat << " out of 100" <<  endl;
+    cout << "Energy: " << energyStat << " out of 100" << endl;
+    cout << "Love: " << loveStat << " out of 100" <<  endl;
+    cout << "The time is currently: " << getTime() << endl;
 }
 
 //---------------------------------------------------------//
@@ -143,10 +144,9 @@ void scold() {
 int main() {
  
     setup();
-    string name; 
-    cout << "what would you like to name your pet" << endl;
+    cout << "What would you like to name your pet?" << endl;
     cin >> name; 
-    cout << "your pet is named: \n" << endl;
+    cout << "Your pet's name is : \n" << endl;
     cout << name << endl; 
     printPet();
     int input; 
@@ -154,71 +154,78 @@ int main() {
     while (isAlive()) {
         if(healthStat < 50 && isScold == false) {
             input = 9;
-        } else {
-            cout << "what would you like to do"<< endl;
-            cout << "(1) feed pet snack" << endl;
-            cout << "(2) feed a meal" << endl;
-            cout << "(3) play fetch " << endl;
-            cout << "(4) go for a run " << endl;
-            cout << "(5) give pets" << endl;
-            cout << "(6) pet nap " << endl;
-            cout <<"(7) sleep the night " << endl; 
-            cout <<"(8) eat a treat " << endl; 
-            cin >> input;
+        } 
+    else {
+	cout << "What would you like to do with " << name << endl;
+   	cout << "(1) Feed  " << name << "  snack" << endl;
+        cout << "(2) Feed "<< name << " meal" << endl;
+        cout << "(3) Play fetch with " << name << endl;
+        cout << "(4) Go for a run with " << name << endl;
+        cout << "(5) Give " <<name << " a belly rub" << endl;
+        cout << "(6) Let  " << name << " take a nap " << endl;
+        cout <<"(7) Tuck " << name << " in for bed " << endl; 
+        cout <<"(8) Feed "  << name << " a treat " << endl; 
+        cin >> input;
         }
         switch(input){
-            case 1: cout << "you gave your pet a snack \n"  << endl;
-                eatSnack();
-                cout << "your pets health stats are now \n" << endl; 
+            case 1: cout << "You fed" << name << "a snack!\n" << endl; 
+                cout << name << "'s health stats are now \n" << endl; 
                 toStringStats();  
                 break;
 
-            case 2: cout << "you fed your pet a meal \n" << endl;
+            case 2: cout << "You fed your "<< name << "a meal! \n" << endl;
                 eatMeal();
-                cout << "your pets health stats are now \n"  <<endl;
+                cout << name << "gained energy and hunger points! \n" << endl;
+                cout << name <<"'s health stats are now \n"  <<endl;
                 toStringStats();
                 break;
 
-            case 3: cout << "you played fetch with your pet \n" << endl;
+            case 3: cout << "You played fetch with "<< name <<" \n" << endl;
                 playFetch();
-                cout << "your pet's health stats are now \n" << endl;
+                cout << name << " lost energy points but gained love and health points!\n" << endl;
+                cout << name  << "'s pet's health stats are now \n" << endl;
                 toStringStats();
                 break;
             
-            case 4 : cout << " you took you pet for a run \n" << endl;
+            case 4 : cout << " You took"  << name << " for a run! \n" << endl;
                 goOnRun();
-                cout << "your pet's health stats are now \n" << endl;
+                cout << name << "'s health stats are now \n" << endl;
                 toStringStats();
                 break; 
             
-            case 5: cout << "you gave your pet a belly rub \n" << endl;
+            case 5: cout << "You gave your pet a belly rub! \n" << endl;
                 pets();
-                cout << "your pet's health stats are now \n " << endl;
+                cout << name << " lost energy points but gained love and health points!\n" << endl;
+                cout << name << "'s health stats are now \n " << endl;
                 toStringStats();
                 break;
 
-            case 6: cout << "your pet took a nap \n" << endl;
+            case 6: cout << name << "took a nap!\n" << endl;
                 takeNap();
-                cout << "your pet's health stats are now \n" << endl;
+                cout << name << " gained energy points but lost hunger points!\n" << endl;
+                cout << name << "'s health stats are now \n " << endl;
                 toStringStats();
                 break;
 
-            case 7: cout << "your pet fell asleep! \n" << endl; 
+            case 7: cout << name << " fell asleep! \n" << endl; 
                 goBed();
-                cout << "your pet's health stats are now \n" << endl;
+                cout << name << " gained energy points but lost hunger points!\n" << endl;
+                cout << name << "'s health stats are now \n " << endl;
                 toStringStats();
                 break;
             
-            case 8: cout << "your pet eats a treat! \n" << endl;
+            case 8: cout << "You feed " << name << " a treat! \n" << endl;
                 eatTreat();
-                cout << "your pet's health stats are now \n" << endl;
+                cout << name << " gained points in hunger and love but lost points in health.\n" << endl;
+                cout << name << "'s health stats are now \n " << endl;
                 toStringStats();
                 break;
 
-            case 9: cout << "you scold your pet! \n" <<endl;
+            case 9: cout << "Oh no! " << name << " had an accident on the floor!\n " <<endl;
                 scold();
                 isScold = true;
-                cout << "your pet's health stats are now \n" << endl;
+                cout << name << "lost points in love\n" << endl;
+                cout << name << "'s health stats are now \n " << endl;
                 toStringStats();
                 break;
         }
