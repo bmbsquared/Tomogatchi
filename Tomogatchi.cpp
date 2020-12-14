@@ -138,8 +138,67 @@ void scold() {
 int main() {
  
     setup();
-
+    string name; 
+    cout << "what would you like to name your pet" << endl;
+    cin >> name; 
+    cout << "your pet is named: \n" << endl;
+    cout << name << endl; 
+    int input; 
+    cout << "what would you like to do"<< endl;
+    cout << "(1) feed pet snack" << endl;
+    cout << "(2) feed a meal" << endl;
+    cout << "(3) play fetch " << endl;
+    cout << "(4)go for a run " << endl;
+    cout << "(5) give pets" << endl;
+    cout << "(6) pet nap " << endl;
+    cout <<"(7) sleep the night " << endl;
+    cin >> input; 
     while (isAlive()) {
+        switch(input){
+            case 1: cout << "you gave your pet a snack \n"  << endl;
+         eatSnack();
+        cout << "your pets health stats are now \n" << endl; 
+         toStringStats();  
+        break;
+
+        case 2: cout << "you fed your pet a meal \n" << endl;
+         eatMeal();
+         cout << "your pets health stats are now \n"  <<endl;
+         toStringStats();
+         break;
+
+        case 3: cout << "you played fetch with your pet \n" << endl;
+            playFetch();
+            cout << "your pet's health stats are now \n" << endl;
+            toStringStats();
+            break;
+        
+        case 4 : cout << " you took you pet for a run \n" << endl;
+            goOnRun();
+            cout << "your pet's health stats are now \n" << endl;
+            toStringStats();
+            break; 
+        
+        case 5: cout << "you gave your pet a belly rub \n" << endl;
+        pets();
+        cout << "your pet's health stats are now \n " << endl;
+        toStringStats();
+        break;
+
+        case 6: cout << "your pet took a nap \n" << endl;
+        takeNap();
+        cout << "your pet's health stats are now \n" << endl;
+        toStringStats();
+        break;
+
+        case 7: cout << "your pet fell asleep! \n" << endl; 
+        goBed();
+        cout << "your pet's health stats are now \n" << endl;
+        toStringStats();
+        break;
+
+
+        }
         cout << "I am alive \n" << endl;
         cout << hungerStat << endl;
         eatMeal();
